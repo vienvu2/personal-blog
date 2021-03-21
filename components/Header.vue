@@ -1,12 +1,12 @@
 <template>
-  <div class="fixed w-screen">
+  <div class="sticky top-0 w-screen bg-white shadow-md">
     <div class="container mx-auto ">
       <div class="flex align-items-start ">
         <router-link to="/">
           <img src="/logo.png" />
         </router-link>
         <router-link
-          class="p-3 inline-block cursor-pointer hover:text-green-500 border-b-2 border-transparent hover:border-green-500 "
+          class="uppercase font-weight-bold p-3 inline-block cursor-pointer hover:text-green-500 border-b-2 border-transparent hover:border-green-500 "
           to="/"
         >
           Trang chủ
@@ -42,15 +42,16 @@
           </div>
         </div>
         <router-link
-          class="p-2 text-bold inline-block cursor-pointer hover:text-green-500 border-b-2 border-transparent hover:border-green-500 "
+          class="p-3 text-bold inline-block cursor-pointer hover:text-green-500 border-b-2 border-transparent hover:border-green-500 "
           to="/whoiam"
         >
           Tôi là ai?
         </router-link>
         <div class="flex-1" />
-        <div class="p-2 border-xl h-3" :class="{ active: keySearch }">
+        <div class="p-1">
           <i class="fa fa-search" />
           <input
+            class="p-2 border border-green-500 focus:border-green-700"
             @keyup.enter="search"
             v-model="$route.query.s"
             placeholder="Nhập từ tìm kiếm"
@@ -74,7 +75,7 @@ export default {
   },
   methods: {
     search: function() {
-      this.$router.push({ name: "search", query: { s: this.$route.query.s } });
+      this.$router.push('/?s='+this.$route.query.s );
     },
   },
 };
