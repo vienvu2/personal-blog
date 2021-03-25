@@ -32,7 +32,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['remixicon'],
+  modules: [],
   /*
    ** Build configuration
    */
