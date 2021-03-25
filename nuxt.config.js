@@ -1,5 +1,6 @@
 export default {
   ssr: true,  
+  target: 'static',
   /*
    ** Headers of the page
    */
@@ -31,7 +32,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['remixicon'],
   /*
    ** Build configuration
    */
