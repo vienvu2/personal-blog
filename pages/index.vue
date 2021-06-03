@@ -1,73 +1,66 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        a
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div class="home">
+    <Intro />
+    <Blog :data="blogs" />
+    <br />
+    <div class="text-center"></div>
+    <br />
   </div>
 </template>
 
 <script>
-export default {}
+// @ is an alias to /src
+import Intro from "@/components/Intro.vue";
+import Blog from "@/components/Blog.vue";
+
+import { getPosts } from "@/service.js";
+
+export default {
+  name: "home",
+  components: {
+    Intro,
+    Blog
+  },
+  data() {
+    return {
+      pageIndex: 1,
+      blogs: [],
+      total: 0
+    };
+  },
+  methods: {
+    onChangePage: function(params) {
+      this.pageIndex = params;
+    },
+    getData: function() {
+      // document.title = 'Viên Vũ | Home';
+      const that = this;
+      getPosts(this.pageIndex).then(data => {
+        that.blogs = [];
+        that.total = Math.floor(data.total / 20);
+        const dataArr = data.list;
+        dataArr.map(doc => {
+          // console.log(doc);
+          that.blogs.push({
+            id: doc.id,
+            ...doc
+          });
+        });
+        // console.log(that.blogs);
+      });
+    }
+  },
+  created: function() {
+    this.getData();
+  }
+};
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+<style lang="scss">
+.see-more {
+  background: #ca3a5c;
+  border: 0;
+  &:hover {
+    background: #a50e32;
+  }
 }
 </style>
