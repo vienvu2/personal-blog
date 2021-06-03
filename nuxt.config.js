@@ -1,7 +1,9 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "server",
-
+  generate: {
+    dir: 'public'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Page",
