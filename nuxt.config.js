@@ -1,7 +1,7 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "server",
-  buildDir: 'dist',
+  // buildDir: 'dist',
   generate: {
     dir: 'dist'
   },
