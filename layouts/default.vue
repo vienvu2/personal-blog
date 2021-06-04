@@ -16,3 +16,7 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import url('./../static/style.scss')
+</style>

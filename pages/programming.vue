@@ -71,11 +71,13 @@ export default {
       authors: ["Viên Vũ"]
     };
   },
+  head: {
+    title: "Viên Vũ | Programming"
+  },
   methods: {
     onChangePage() {},
     doSearch() {
       this.keySearch = "programming";
-      // document.title = 'Viên Vũ | Programming' ;
 
       const that = this;
       getSearchPosts(this.pageIndex, this.keySearch).then(data => {

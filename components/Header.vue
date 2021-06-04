@@ -1,93 +1,98 @@
 <template>
-<div >
-    <div class="mobile-menu" :class="{show: menuOpen}" >
-      <ul @click="toggleMenu" >
+  <div>
+    <div class="mobile-menu" :class="{ show: menuOpen }">
+      <ul @click="toggleMenu">
         <li>
-          <router-link to="/"  >
-          Trang chủ
+          <router-link to="/">
+            Trang chủ
           </router-link>
-          </li>
-        <li> <router-link to="/programming" >
-          Lập trình
-          </router-link></li>
-           <li> <router-link to="/hobby"  >
-          Sở thích
-          </router-link></li>
-           <li> <router-link to="/whoiam"  >
-          Tôi là ai?
-          </router-link></li>
-           <!-- <li> <router-link to="/contact">
-          Contact
-          </router-link></li> -->
-       
+        </li>
+        <li>
+          <router-link to="/programming">
+            Lập trình
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/hobby">
+            Sở thích
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/whoiam">
+            Tôi là ai?
+          </router-link>
+        </li>
       </ul>
-      <div class="close" @click="toggleMenu"/> 
+      <div class="close" @click="toggleMenu" />
     </div>
 
-  <div class="header container" >
-  
-    <div class="icon-menu" @click="toggleMenu">
-      <i class="fa fa-bars" />
-    </div>
-    <div class="logo">
-       <router-link to="/">
-        <img src="/logo.png">
-      </router-link>
-    </div>
-    <div class="menu">
-      <ul>
-        <li>
-          <div class="menu-item">
-          <router-link to="/home">
-              Trang chủ
-          </router-link>
-          </div>
-        </li>
-        <li>
-          <div class="menu-item">
-          <router-link to="/programming">
-             Lập trình
-          </router-link>
-          </div>
-        </li>
-        <li>
-          <div class="menu-item">
-            <router-link to="/hobby">
-              Sở thích
-              <i class="fa fa-chevron-down"/>
-            </router-link>
-            <div class="sub-menu">
-              <ul>
-                <li>
-                  <router-link to="/hobby/travel">Du lịch</router-link>
-                </li>
-                <li>
-                  <router-link to="/hobby/film">Đánh giá phim</router-link>
-                </li>
-                <li>
-                  <router-link to="/hobby/book">Đánh giá sách</router-link>
-                </li>
-              </ul>
+    <div class="header container">
+      <div class="icon-menu" @click="toggleMenu">
+        <i class="fa fa-bars" />
+      </div>
+      <div class="logo">
+        <router-link to="/">
+          <img src="/logo.png" />
+        </router-link>
+      </div>
+      <div class="menu">
+        <ul>
+          <li>
+            <div class="menu-item">
+              <router-link to="/">
+                Trang chủ
+              </router-link>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="menu-item">
-                  <router-link to="/whoiam">Tôi là ai?</router-link>
-          </div>
-        </li>
-        <!-- <li>
+          </li>
+          <li>
+            <div class="menu-item">
+              <router-link to="/programming">
+                Lập trình
+              </router-link>
+            </div>
+          </li>
+          <li>
+            <div class="menu-item">
+              <router-link to="/hobby">
+                Sở thích
+                <i class="fa fa-chevron-down" />
+              </router-link>
+              <div class="sub-menu">
+                <ul>
+                  <li>
+                    <router-link to="/hobby/travel">Du lịch</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/hobby/film">Đánh giá phim</router-link>
+                  </li>
+                  <li>
+                    <router-link to="/hobby/book">Đánh giá sách</router-link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="menu-item">
+              <router-link to="/whoiam">Tôi là ai?</router-link>
+            </div>
+          </li>
+          <!-- <li>
           <div class="menu-item">
                   <router-link to="/contact">Contact</router-link>
           </div>
         </li> -->
-      </ul>
+        </ul>
+      </div>
+      <div class="search" :class="{ active: keySearch }">
+        <i class="fa fa-search" />
+        <input
+          @keyup.enter="search"
+          v-model="keySearch"
+          placeholder="Nhập từ tìm kiếm"
+        />
+      </div>
     </div>
-    <div class="search" :class="{active: keySearch}">
-      <i class="fa fa-search"/>
-      <input @keyup.enter="search" v-model="keySearch" placeholder="Nhập từ tìm kiếm" />
-    </div>
-  </div>
   </div>
 </template>
 
@@ -108,9 +113,9 @@ export default {
       this.menuOpen = !this.menuOpen;
     },
     search: function() {
-      this.$router.push({ name: 'search', query: { s: this.keySearch } })
+      this.$router.push({ name: "search", query: { s: this.keySearch } });
     },
-    doSearch(){
+    doSearch() {
       this.keySearch = this.$route.query.s;
     }
   },
@@ -118,9 +123,10 @@ export default {
     "$route.query.s"() {
       this.doSearch();
     }
-  },created() {
-    this.doSearch();
   },
+  created() {
+    this.doSearch();
+  }
 };
 </script>
 
@@ -297,7 +303,7 @@ export default {
         color: #999;
       }
     }
-     &.active ,
+    &.active,
     &:hover {
       background: #ca3a5c;
       color: white;
@@ -306,8 +312,8 @@ export default {
         padding-left: 15px;
         color: white;
         &::placeholder {
-        color: #fff6;
-      }
+          color: #fff6;
+        }
       }
     }
   }

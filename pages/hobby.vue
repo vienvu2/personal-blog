@@ -90,11 +90,13 @@ export default {
       authors: ["Viên Vũ"]
     };
   },
+  head: {
+    title: "Viên Vũ | Hobby"
+  },
   methods: {
     onChangePage() {},
     doSearch() {
       this.keySearch = "hobby";
-      // document.title = 'Viên Vũ | Hobby' ;
       const that = this;
       getSearchPosts(this.pageIndex, this.keySearch).then(data => {
         that.blogs = [];

@@ -2,9 +2,6 @@
   <div class="home">
     <Intro />
     <Blog :data="blogs" />
-    <br />
-    <div class="text-center"></div>
-    <br />
   </div>
 </template>
 
@@ -28,25 +25,24 @@ export default {
       total: 0
     };
   },
+  head: {
+    title: 'Viên Vũ | Home',
+  },
   methods: {
     onChangePage: function(params) {
       this.pageIndex = params;
     },
     getData: function() {
-      // document.title = 'Viên Vũ | Home';
-      const that = this;
       getPosts(this.pageIndex).then(data => {
-        that.blogs = [];
-        that.total = Math.floor(data.total / 20);
+        this.blogs = [];
+        this.total = Math.floor(data.total / 20);
         const dataArr = data.list;
         dataArr.map(doc => {
-          // console.log(doc);
-          that.blogs.push({
+          this.blogs.push({
             id: doc.id,
             ...doc
           });
         });
-        // console.log(that.blogs);
       });
     }
   },
@@ -55,12 +51,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.see-more {
-  background: #ca3a5c;
-  border: 0;
-  &:hover {
-    background: #a50e32;
-  }
-}
-</style>
